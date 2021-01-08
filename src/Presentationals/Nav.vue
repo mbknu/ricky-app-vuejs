@@ -2,7 +2,7 @@
   <div class="container">
     <div class="links">
       <ul>
-        <li>Search</li>
+        <router-link to="/search"><li>Search</li></router-link>
         <li>
           <a href="https://rickandmortyapi.com/" target="_blank" rel="noopener"
             >Doc</a
