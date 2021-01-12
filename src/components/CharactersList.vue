@@ -1,11 +1,5 @@
 <template>
-  <article
-    v-for="character in characters"
-    :key="character.id"
-    :character="character"
-  >
-    <h3>{{ character.name }}</h3>
-  </article>
+  <h3>{{ characters.results }}</h3>
 </template>
 
 <script>
@@ -16,12 +10,15 @@ export default {
       characters: [],
     };
   },
+  mounted() {
+    this.fetchData();
+  },
   methods: {
     fetchData() {
-      fetch(`https://rickandmortyapi.com/api/character`)
-        .then((response) => console.log("json", response.json()))
-        .then((result) => {
-          console.log("result", result.data);
+      fetch(`https://rickandmortyapi.com/api/character/`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.characters = data;
         });
     },
   },
