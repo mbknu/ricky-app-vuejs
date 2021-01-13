@@ -2,17 +2,18 @@
   <div class="list" v-for="character in characters" :key="character.id">
     <div class="details">
       <img v-bind:src="`${character.image}`" class="profilpicture" />
-      {{ character.name }}
+      <h3>{{ character.name }}</h3>
       {{ character.status }}
       {{ character.species }} <br />
 
-      Last know location : {{ character.location.name }} First seen in :
-      {{ character.origin.name }}
+      Last known location : {{ character.location.name }} <br />
+      Origin : {{ character.origin.name }}
     </div>
   </div>
 </template>
 
 <script>
+import uniq from "lodash.uniq";
 export default {
   name: "CharacterList",
   data: () => {
@@ -25,22 +26,17 @@ export default {
   },
   methods: {
     fetchData() {
-      function getSixRandomCharacter(length) {
-        let randomArray = [];
-        do {
-          let random = Math.floor(Math.random() * 672);
-          randomArray =
-            randomArray.indexOf(random) > -1
-              ? randomArray
-              : randomArray.concat(random);
-        } while (randomArray.length < length);
+      function getRandomCharacters(length) {
+        const randomArray = new Array(length).fill().map(() => {
+          return Math.floor(Math.random() * 672);
+        });
 
-        return randomArray;
+        return uniq(randomArray);
       }
 
-      const res = getSixRandomCharacter(6);
+      const getRandomCharacter = getRandomCharacters(6);
 
-      fetch(`https://rickandmortyapi.com/api/character/${res}`)
+      fetch(`https://rickandmortyapi.com/api/character/${getRandomCharacter}`)
         .then((response) => response.json())
         .then((data) => {
           this.characters = data;
@@ -55,5 +51,13 @@ export default {
 .list {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 50px;
+  width: 100%;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 250px;
 }
 </style>
