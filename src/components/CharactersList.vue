@@ -1,10 +1,13 @@
 <template>
   <div class="list" v-for="character in characters" :key="character.id">
     <div class="details">
-      <!-- <img v-bind:src="`${character.image}`" class="profilpicture" /> -->
+      <img v-bind:src="`${character.image}`" class="profilpicture" />
       {{ character.name }}
       {{ character.status }}
       {{ character.species }} <br />
+
+      Last know location : {{ character.location.name }} First seen in :
+      {{ character.origin.name }}
     </div>
   </div>
 </template>
@@ -38,7 +41,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.characters = data;
-          // console.log("data", data);
+          console.log("data", data);
         });
     },
   },
