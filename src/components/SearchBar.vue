@@ -1,5 +1,6 @@
 <template>
   <input
+    type="search"
     placeholder="Search characters..."
     v-model="searchValue"
     @input="onInput"
@@ -44,7 +45,6 @@ input {
   border: 2px solid #5f5f5f;
   display: block;
 }
-
 input:focus {
   border-color: rgb(255, 152, 0);
 }

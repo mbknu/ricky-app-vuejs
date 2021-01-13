@@ -2,7 +2,7 @@
   <div class="wrapper">
     <Header />
     <div class="container"><searchBar @fetch-characters="onFetch" /></div>
-    <Character />
+    <CharactersList />
     <Footer />
   </div>
 </template>
@@ -12,7 +12,7 @@ import axios from "axios";
 import Header from "../Presentationals/Header.vue";
 import Footer from "../Presentationals/Footer.vue";
 import SearchBar from "./SearchBar";
-import Character from "./Character";
+import CharactersList from "./CharactersList";
 
 export default {
   name: "Home",
@@ -20,7 +20,7 @@ export default {
     Header,
     Footer,
     SearchBar,
-    Character,
+    CharactersList,
   },
   methods: {
     onCharacterFetch(result) {
