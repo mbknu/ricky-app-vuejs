@@ -25,19 +25,22 @@ export default {
   },
   methods: {
     fetchData() {
-      function getRandom() {
-        const randomNumber = Math.floor(Math.random() * 672);
-        const randomNumber1 = Math.floor(Math.random() * 672);
-        const randomNumber2 = Math.floor(Math.random() * 672);
-        const randomNumber3 = Math.floor(Math.random() * 672);
-        const randomNumber4 = Math.floor(Math.random() * 672);
-        const randomNumber5 = Math.floor(Math.random() * 672);
+      function getSixRandomCharacter(length) {
+        let randomArray = [];
+        do {
+          let random = Math.floor(Math.random() * 672);
+          randomArray =
+            randomArray.indexOf(random) > -1
+              ? randomArray
+              : randomArray.concat(random);
+        } while (randomArray.length < length);
 
-        const total = `${randomNumber}, ${randomNumber1}, ${randomNumber2}, ${randomNumber3}, ${randomNumber4}, ${randomNumber5}`;
-        return total;
+        return randomArray;
       }
 
-      fetch(`https://rickandmortyapi.com/api/character/[${getRandom()}]`)
+      const res = getSixRandomCharacter(6);
+
+      fetch(`https://rickandmortyapi.com/api/character/${res}`)
         .then((response) => response.json())
         .then((data) => {
           this.characters = data;
