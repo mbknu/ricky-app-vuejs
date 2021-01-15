@@ -17,6 +17,6 @@ export default {
 .wrapper {
   width: 100%;
   height: 250px;
-  background-color: #273646;
+  background-color: rgb(32, 35, 41);
 }
 </style>
