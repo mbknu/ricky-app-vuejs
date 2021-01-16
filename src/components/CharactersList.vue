@@ -12,13 +12,7 @@
           <div class="status">
             <div
               class="status_icon"
-              :class="
-                `${character.status}` === 'Alive'
-                  ? 'status_alive'
-                  : `${character.status}` === 'Dead'
-                  ? 'status_dead'
-                  : 'status_unknown'
-              "
+              :class="`status_${character.status}`"
             ></div>
             {{ character.status }} - {{ character.species }}
           </div>
@@ -64,7 +58,6 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.characters = data;
-          console.log("data", data);
         });
     },
   },
@@ -75,6 +68,7 @@ export default {
 .card_container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   background-color: rgb(36, 40, 47);
 }
@@ -130,14 +124,14 @@ export default {
   text-transform: capitalize;
 }
 
-.status_alive {
+.status_Alive {
   height: 0.5rem;
   width: 0.5rem;
   margin-right: 0.375rem;
   background: rgb(85, 204, 68);
   border-radius: 50%;
 }
-.status_dead {
+.status_Dead {
   height: 0.5rem;
   width: 0.5rem;
   margin-right: 0.375rem;
